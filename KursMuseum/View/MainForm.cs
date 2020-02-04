@@ -30,7 +30,17 @@ namespace KursMuseum.View
 
         public int SelectTypeTckets => cbTypeTicket.SelectedIndex;
 
-        public double SelectMainTable => (double)dgvMainTable.CurrentRow.Cells[5].Value;
+        public double SelectMainTableInitialCost => (double)dgvMainTable.CurrentRow.Cells[5].Value;
+
+        public string SelectMainTableTypeExcursion => (string)dgvMainTable.CurrentRow.Cells[0].Value;
+
+        public DateTime SelectMainTableTimeStart => (DateTime)dgvMainTable.CurrentRow.Cells[1].Value;
+
+        public DateTime SelectMainTableTimeFinish => (DateTime)dgvMainTable.CurrentRow.Cells[2].Value;
+
+        public string SelectMainTableVenue => (string)dgvMainTable.CurrentRow.Cells[3].Value;
+
+        public int SelectMainTableTicketLeft => (int)dgvMainTable.CurrentRow.Cells[4].Value;
 
         public MainForm()
         {
@@ -59,6 +69,12 @@ namespace KursMuseum.View
         {
             add => btnChangeExcursion.Click += value;
             remove => btnChangeExcursion.Click -= value;
+        }
+
+        public event EventHandler DeleteEx
+        {
+            add => btnDelExcursion.Click += value;
+            remove => btnDelExcursion.Click -= value;
         }
 
         public new void Show()

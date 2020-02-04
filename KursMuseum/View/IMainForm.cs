@@ -14,11 +14,17 @@ namespace KursMuseum.View
         BindingList<ScheduleExcursionItem> ScheduleExcursionItems { get; set; }
         BindingList<string> TypeTickets { set; }
         int SelectTypeTckets { get; }
-        double SelectMainTable { get; }
+        string SelectMainTableTypeExcursion { get; }
+        DateTime SelectMainTableTimeStart { get; }
+        DateTime SelectMainTableTimeFinish { get; }
+        string SelectMainTableVenue { get; }
+        int SelectMainTableTicketLeft { get; }
+        double SelectMainTableInitialCost { get; }
         event EventHandler AddEx;
         event EventHandler SoldTickets;
         event EventHandler TypeTicket;
         event EventHandler MainTable;
         event EventHandler ChangeEx;
+        event EventHandler DeleteEx;
     }
 }

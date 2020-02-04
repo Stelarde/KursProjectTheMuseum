@@ -21,10 +21,9 @@ namespace KursMuseum.Presenter
         }
         UnitOfWork unitOfWork = new UnitOfWork();
 
-        public void Update(IMainForm view)
+        public void Update()
         {
-            UnitOfWork unitOfWork = new UnitOfWork();
-            view.ScheduleExcursionItems = unitOfWork.RepositoryScheduleExcursionItem.GetAll();
+            _mainView.ScheduleExcursionItems = unitOfWork.RepositoryScheduleExcursionItem.GetAll();
         }
         public MainPresenter (IMainForm view, LocalStorage db)
         {
@@ -33,7 +32,8 @@ namespace KursMuseum.Presenter
             view.SoldTickets += SoldTicketsClick;
             view.TypeTicket += TypeTicketChanged;
             view.MainTable += ExcursionChoice;
-            view.ChangeEx += ChangeExcrusion;
+            view.ChangeEx += ChangeExcursion;
+            view.DeleteEx += DeleteExcursion;
 
             BindingList<string> TypeTicket = new BindingList<string> 
             {
@@ -44,15 +44,27 @@ namespace KursMuseum.Presenter
             view.ScheduleExcursionItems = unitOfWork.RepositoryScheduleExcursionItem.GetAll();
         }
 
-        private void ChangeExcrusion(object sender, EventArgs e)
+        private void DeleteExcursion(object sender, EventArgs e)
+        {
+            ScheduleExcursionItem scheduleExcursionItem = new ScheduleExcursionItem();
+            scheduleExcursionItem.InitialCost = _mainView.SelectMainTableInitialCost;
+            scheduleExcursionItem.TicketsLeft = _mainView.SelectMainTableTicketLeft;
+            scheduleExcursionItem.TimeFinish = _mainView.SelectMainTableTimeFinish;
+            scheduleExcursionItem.TimeStart = _mainView.SelectMainTableTimeStart;
+            scheduleExcursionItem.TypeExcursion = _mainView.SelectMainTableTypeExcursion;
+            scheduleExcursionItem.Venue = _mainView.SelectMainTableVenue;
+            unitOfWork.RepositoryScheduleExcursionItem.Delete(scheduleExcursionItem);
+            Update();
+        }
+
+        private void ChangeExcursion(object sender, EventArgs e)
         {
             var rf = new ChangeExPrs(new ChangeEx());
-
         }
 
         private void ExcursionChoice(object sender, EventArgs e)
         {
-            PriceTicket = _mainView.SelectMainTable;
+            PriceTicket = _mainView.SelectMainTableInitialCost;
         }
 
         private void TypeTicketChanged(object sender, EventArgs e)

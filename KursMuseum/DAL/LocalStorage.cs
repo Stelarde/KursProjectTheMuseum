@@ -47,21 +47,6 @@ namespace KursMuseum.DAL
                 }
             };
         }
-        //public void FillScheduleExcursionItems(string NE, DateTime TSE, DateTime TFE, string VE, int QTE, double SPTE)
-        //{
-        //    ScheduleExcursionItems = new BindingList<ScheduleExcursionItem>()
-        //    {
-        //        new ScheduleExcursionItem()
-        //        {
-        //            TypeExcursion=NE,
-        //            TimeFinish=TFE,
-        //            TimeStart=TSE,
-        //            Venue=VE,
-        //            TicketsLeft=QTE,
-        //            InitialCost=SPTE
-        //        }
-        //    };
-        //}
         public void FillScheduleExcursionItems()
         {
             ScheduleExcursionItems = new BindingList<ScheduleExcursionItem>()
@@ -82,7 +67,6 @@ namespace KursMuseum.DAL
             FillSellTickets();
             FillTypeTickets();
             FillScheduleExcursionItems();
-            //FillScheduleExcursionItems(NE, TSE, TFE, VE, QTE, SPTE);
         }
     }
 }
