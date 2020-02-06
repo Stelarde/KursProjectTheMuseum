@@ -30,7 +30,8 @@ namespace KursMuseum.Presenter
         {
             BindingList<SellTicket> tickets = unitOfWork.RepositorySellTicket.GetAllDate(_sellForm.SelectDate);
             _sellForm.SellTickets = tickets;
-            _sellForm.AllSalles = unitOfWork.RepositorySellTicket.SummSellTicket(_sellForm.SelectDate);
+            double sum = unitOfWork.RepositorySellTicket.SummSellTicket(_sellForm.SelectDate);
+            _sellForm.AllSalles = sum;
         }
 
         private void SellChangeClick(object sender, EventArgs e)
