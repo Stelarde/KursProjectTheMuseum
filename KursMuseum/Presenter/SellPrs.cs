@@ -23,13 +23,14 @@ namespace KursMuseum.Presenter
             RF.SellDelete += SellDeleteClick;
             RF.SellChange += SellChangeClick;
             RF.ChangeDateSell += ChangeDateSellClick;
-            //RF.AllSalles = 
+            RF.AllSalles = unitOfWork.RepositorySellTicket.SummSellTicket(_sellForm.SelectDate);
         }
 
         private void ChangeDateSellClick(object sender, EventArgs e)
         {
             BindingList<SellTicket> tickets = unitOfWork.RepositorySellTicket.GetAllDate(_sellForm.SelectDate);
             _sellForm.SellTickets = tickets;
+            _sellForm.AllSalles = unitOfWork.RepositorySellTicket.SummSellTicket(_sellForm.SelectDate);
         }
 
         private void SellChangeClick(object sender, EventArgs e)
@@ -46,6 +47,7 @@ namespace KursMuseum.Presenter
             sellTicket.TimeStart = _sellForm.TimeStart;
             sellTicket.TypeTicket = _sellForm.TypeTicket;
             unitOfWork.RepositorySellTicket.Delete(sellTicket);
+            _sellForm.AllSalles = unitOfWork.RepositorySellTicket.SummSellTicket(_sellForm.SelectDate);
         }
     }   
 }

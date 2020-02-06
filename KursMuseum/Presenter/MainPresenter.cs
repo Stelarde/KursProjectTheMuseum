@@ -59,7 +59,7 @@ namespace KursMuseum.Presenter
             scheduleExcursionItem.TypeExcursion = _mainView.SelectMainTableTypeExcursion;
             scheduleExcursionItem.Venue = _mainView.SelectMainTableVenue;
             unitOfWork.RepositoryScheduleExcursionItem.Update(scheduleExcursionItem);
-            MessageBox.Show("Билет продан на '" + sellTicket.NameExcursion + "' " + sellTicket.TypeTicket + " по цене "+ sellTicket.PriceTicket.ToString());
+            //MessageBox.Show("Билет продан на '" + sellTicket.NameExcursion + "' " + sellTicket.TypeTicket + " по цене "+ sellTicket.PriceTicket.ToString());
         }
 
         private void DeleteExcursion(object sender, EventArgs e)

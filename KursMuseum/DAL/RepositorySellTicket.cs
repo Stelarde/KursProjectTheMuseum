@@ -24,6 +24,16 @@ namespace KursMuseum.DAL
         {
             return db.SellTickets;
         }
+        public double SummSellTicket(DateTime dateTime)
+        {
+            BindingList<SellTicket> summsellTickets = GetAllDate(dateTime);
+            double sum = 0;
+            foreach (SellTicket sellTicket in summsellTickets)
+            {
+                sum += sellTicket.PriceTicket;
+            }
+            return sum;
+        }
         public BindingList<SellTicket> GetAllDate(DateTime dateTime)
         {
             BindingList<SellTicket> sellTicketsAll = db.SellTickets;
