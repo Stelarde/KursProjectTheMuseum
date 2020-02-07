@@ -11,6 +11,7 @@ namespace KursMuseum.DAL
         private LocalStorage db = LSS.LocalStorage;
         private RepositoryScheduleExcursionItem repositoryScheduleExcursionItem;
         private RepositorySellTicket repositorySellTicket;
+        private RepositoryReportSellTicket repositoryReportSellTicket;
         public RepositoryScheduleExcursionItem RepositoryScheduleExcursionItem
         {
             get
@@ -27,6 +28,15 @@ namespace KursMuseum.DAL
                 if (repositorySellTicket == null)
                     repositorySellTicket = new RepositorySellTicket(db);
                 return repositorySellTicket;
+            }
+        }
+        public RepositoryReportSellTicket RepositoryReportSellTicket
+        {
+            get
+            {
+                if (repositoryReportSellTicket == null)
+                    repositoryReportSellTicket = new RepositoryReportSellTicket(db);
+                return repositoryReportSellTicket;
             }
         }
     }

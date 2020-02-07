@@ -15,15 +15,16 @@ namespace KursMuseum.Presenter
         IChangeEx changeEx;
         ScheduleExcursionItem scheduleExcursionItem = new ScheduleExcursionItem();
         BindingList<ScheduleExcursionItem> scheduleExcursionItems = new BindingList<ScheduleExcursionItem>();
-        UnitOfWork UnitOfWork = new UnitOfWork();
-        public ChangeExPrs(IChangeEx ChEx)
+        UnitOfWork UnitOfWork;
+        public ChangeExPrs(IChangeEx ChEx, UnitOfWork unitOfWork)
         {
+            UnitOfWork = unitOfWork;
             changeEx = ChEx;
             scheduleExcursionItems = UnitOfWork.RepositoryScheduleExcursionItem.GetAll();
             changeEx.Excurs = scheduleExcursionItems;
-            changeEx.Show();
             ChEx.ChangeExcursion += ChengeExcursionClick;
             ChEx.SelectExcurs += SelectExcursionClick;
+            changeEx.ShowDialog();
         }
 
         private void SelectExcursionClick(object sender, EventArgs e)

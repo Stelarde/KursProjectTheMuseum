@@ -41,6 +41,12 @@ namespace KursMuseum.View
 
         public DateTime SelectDate => (DateTime)dateTimePicker1.Value;
 
+        public event EventHandler ReportSellTicket
+        {
+            add => btnReportSellTicket.Click += value;
+            remove => btnReportSellTicket.Click -= value;
+        }
+
         public event EventHandler ChangeDateSell
         {
             add => dateTimePicker1.ValueChanged += value;

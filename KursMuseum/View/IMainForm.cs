@@ -28,5 +28,7 @@ namespace KursMuseum.View
         event EventHandler ChangeEx;
         event EventHandler DeleteEx;
         event EventHandler SellTicket;
+        event EventHandler CloseProgram;
+        event EventHandler ReportShedule;
     }
 }

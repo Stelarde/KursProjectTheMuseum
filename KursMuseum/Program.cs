@@ -18,7 +18,7 @@ namespace KursMuseum
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var presenter = new MainPresenter(new MainForm(), new DAL.LocalStorage());
+            var presenter = new MainPresenter(new MainForm(), new DAL.UnitOfWork(), new DAL.LocalStorage());
             presenter.Run();
         }
     }

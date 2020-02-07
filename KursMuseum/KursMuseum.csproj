@@ -49,24 +49,26 @@
   <ItemGroup>
     <Compile Include="DAL\IRepository.cs" />
     <Compile Include="DAL\LocalStorage.cs" />
+    <Compile Include="DAL\RepositoryReportSellTicket.cs" />
     <Compile Include="DAL\RepositoryScheduleExcursionItem.cs" />
     <Compile Include="DAL\LSS.cs" />
     <Compile Include="DAL\RepositorySellTicket.cs" />
     <Compile Include="DAL\UnitOfWork.cs" />
+    <Compile Include="Export\Excel\ExcelExport.cs" />
+    <Compile Include="Export\Excel\ExcelExportShedule.cs" />
     <Compile Include="Export\Excel\Excell.cs" />
+    <Compile Include="Export\Excel\ServiceExcell.cs" />
     <Compile Include="Export\Pattern\Pattern.cs" />
+    <Compile Include="Model\ReportSellTicket.cs" />
     <Compile Include="Model\ScheduleExcursionItem.cs" />
     <Compile Include="Model\SellTicket.cs" />
     <Compile Include="Model\TypeTicket.cs" />
-    <Compile Include="Model\TypeTicketExcursion.cs" />
     <Compile Include="Presenter\ChangeExPrs.cs" />
     <Compile Include="Presenter\ChangeSellPrs.cs" />
     <Compile Include="Presenter\CreatedPrs.cs" />
     <Compile Include="Presenter\IMainPresenter.cs" />
     <Compile Include="Presenter\MainPresenter.cs" />
     <Compile Include="Presenter\SellPrs.cs" />
-    <Compile Include="Presenter\DiagramPrs.cs" />
-    <Compile Include="View\BindigList.cs" />
     <Compile Include="View\ChangeEx.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,16 +87,9 @@
     <Compile Include="View\CreatedEx.Designer.cs">
       <DependentUpon>CreatedEx.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Diagram.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Diagram.Designer.cs">
-      <DependentUpon>Diagram.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\IChangeEx.cs" />
     <Compile Include="View\IChangeSell.cs" />
     <Compile Include="View\ICreatedEx.cs" />
-    <Compile Include="View\IDiagram.cs" />
     <Compile Include="View\IMainForm.cs" />
     <Compile Include="View\ISellForm.cs" />
     <Compile Include="View\IView.cs" />
@@ -120,9 +115,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\CreatedEx.resx">
       <DependentUpon>CreatedEx.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Diagram.resx">
-      <DependentUpon>Diagram.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -156,9 +148,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Export\Word\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>

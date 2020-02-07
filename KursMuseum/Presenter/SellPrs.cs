@@ -9,21 +9,45 @@ using KursMuseum.DAL;
 using KursMuseum.Model;
 using KursMuseum.View;
 
+using KursMuseum.Export.Excel;
+
 namespace KursMuseum.Presenter
 {
     public class SellPrs
     {
         ISellForm _sellForm;
         UnitOfWork unitOfWork = new UnitOfWork();
-        public SellPrs(ISellForm RF)
+        ExcelExport export = new ExcelExport();
+        UnitOfWork UnitOfWork;
+        public SellPrs(ISellForm RF, UnitOfWork unitOfWork)
         {
+            UnitOfWork = unitOfWork;
             _sellForm = RF;
-            _sellForm.Show();
-            RF.SellTickets = unitOfWork.RepositorySellTicket.GetAll();
+            RF.SellTickets = UnitOfWork.RepositorySellTicket.GetAll();
             RF.SellDelete += SellDeleteClick;
             RF.SellChange += SellChangeClick;
             RF.ChangeDateSell += ChangeDateSellClick;
-            RF.AllSalles = unitOfWork.RepositorySellTicket.SummSellTicket(_sellForm.SelectDate);
+            RF.ReportSellTicket += ReportSellTicketClick;
+            RF.AllSalles = UnitOfWork.RepositorySellTicket.SummSellTicket(_sellForm.SelectDate);
+            _sellForm.ShowDialog();
+        }
+
+        private void ReportSellTicketClick(object sender, EventArgs e)
+        {
+            ReportSellTicket reportSellTicket = new ReportSellTicket();
+            reportSellTicket.NameExcursion = _sellForm.NameExcrusion;
+            reportSellTicket.TimeStart = _sellForm.TimeStart;
+            reportSellTicket.Month = _sellForm.SelectDate;
+            reportSellTicket.CountChildTickets = unitOfWork.RepositorySellTicket.CountSellTicket("Детский");
+            reportSellTicket.PriceChildTickets = unitOfWork.RepositorySellTicket.SummSellTypeTicket("Детский");
+            reportSellTicket.CountNormalTickets = unitOfWork.RepositorySellTicket.CountSellTicket("Обычный");
+            reportSellTicket.PriceNormalTickets = unitOfWork.RepositorySellTicket.SummSellTypeTicket("Обычный");
+            reportSellTicket.CountOldTickets = unitOfWork.RepositorySellTicket.CountSellTicket("Пенсионный");
+            reportSellTicket.PriceOldTickets = unitOfWork.RepositorySellTicket.SummSellTypeTicket("Пенсионный");
+            reportSellTicket.Summ = _sellForm.AllSalles;
+            unitOfWork.RepositoryReportSellTicket.Create(reportSellTicket);
+
+            export.SetContent(unitOfWork.RepositoryReportSellTicket);
         }
 
         private void ChangeDateSellClick(object sender, EventArgs e)
@@ -36,7 +60,9 @@ namespace KursMuseum.Presenter
 
         private void SellChangeClick(object sender, EventArgs e)
         {
-            var rf = new ChangeSellPrs(new ChangeSell());
+            var rf = new ChangeSellPrs(new ChangeSell(), unitOfWork);
+            _sellForm.SellTickets = null;
+            _sellForm.SellTickets = UnitOfWork.RepositorySellTicket.GetAll();
         }
 
         private void SellDeleteClick(object sender, EventArgs e)

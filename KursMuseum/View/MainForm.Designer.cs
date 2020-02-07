@@ -30,10 +30,9 @@
         {
             this.dgvMainTable = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.закрытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmClose = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmReport = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.cbTypeTicket = new System.Windows.Forms.ComboBox();
@@ -62,40 +61,33 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.файлToolStripMenuItem});
+            this.tsmFile,
+            this.tsmReport});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(780, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // файлToolStripMenuItem
+            // tsmFile
             // 
-            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.открытьToolStripMenuItem,
-            this.сохранитьToolStripMenuItem,
-            this.закрытьToolStripMenuItem});
-            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.файлToolStripMenuItem.Text = "Файл";
+            this.tsmFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmClose});
+            this.tsmFile.Name = "tsmFile";
+            this.tsmFile.Size = new System.Drawing.Size(48, 20);
+            this.tsmFile.Text = "Файл";
             // 
-            // открытьToolStripMenuItem
+            // tsmClose
             // 
-            this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
-            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.открытьToolStripMenuItem.Text = "Открыть";
+            this.tsmClose.Name = "tsmClose";
+            this.tsmClose.Size = new System.Drawing.Size(180, 22);
+            this.tsmClose.Text = "Закрыть";
             // 
-            // сохранитьToolStripMenuItem
+            // tsmReport
             // 
-            this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.сохранитьToolStripMenuItem.Text = "Сохранить";
-            // 
-            // закрытьToolStripMenuItem
-            // 
-            this.закрытьToolStripMenuItem.Name = "закрытьToolStripMenuItem";
-            this.закрытьToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
-            this.закрытьToolStripMenuItem.Text = "Закрыть";
+            this.tsmReport.Name = "tsmReport";
+            this.tsmReport.Size = new System.Drawing.Size(140, 20);
+            this.tsmReport.Text = "Отчет по расписанию";
             // 
             // panel1
             // 
@@ -223,10 +215,8 @@
 
         private System.Windows.Forms.DataGridView dgvMainTable;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem закрытьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmFile;
+        private System.Windows.Forms.ToolStripMenuItem tsmClose;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnSoldTicket;
         private System.Windows.Forms.Button btnDelExcursion;
@@ -242,6 +232,7 @@
         private System.Windows.Forms.Button btnAddExcursion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbTypeTicket;
+        private System.Windows.Forms.ToolStripMenuItem tsmReport;
     }
 }
 

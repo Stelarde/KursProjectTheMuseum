@@ -33,7 +33,6 @@
             this.btnChangeTL = new System.Windows.Forms.Button();
             this.btnReportSellTicket = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.tbAllSales = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -70,7 +69,7 @@
             // 
             // btnReportSellTicket
             // 
-            this.btnReportSellTicket.Font = new System.Drawing.Font("Kunstler Script", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportSellTicket.Font = new System.Drawing.Font("Kunstler Script", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportSellTicket.Location = new System.Drawing.Point(601, 239);
             this.btnReportSellTicket.Name = "btnReportSellTicket";
             this.btnReportSellTicket.Size = new System.Drawing.Size(165, 50);
@@ -87,19 +86,9 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Kunstler Script", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(601, 183);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(165, 50);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Диаграмма проданных билетов";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // tbAllSales
             // 
-            this.tbAllSales.Location = new System.Drawing.Point(601, 157);
+            this.tbAllSales.Location = new System.Drawing.Point(601, 213);
             this.tbAllSales.Name = "tbAllSales";
             this.tbAllSales.Size = new System.Drawing.Size(165, 20);
             this.tbAllSales.TabIndex = 7;
@@ -108,7 +97,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Kunstler Script", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(601, 137);
+            this.label1.Location = new System.Drawing.Point(601, 193);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(137, 17);
             this.label1.TabIndex = 8;
@@ -131,7 +120,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbAllSales);
             this.Controls.Add(this.btnChangeTL);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnReportSellTicket);
             this.Controls.Add(this.btnDelTL);
@@ -157,7 +145,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox tbAllSales;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;

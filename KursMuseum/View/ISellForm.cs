@@ -21,5 +21,6 @@ namespace KursMuseum.View
         event EventHandler SellDelete;
         event EventHandler SellChange;
         event EventHandler ChangeDateSell;
+        event EventHandler ReportSellTicket;
     }
 }

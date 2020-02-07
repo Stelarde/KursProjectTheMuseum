@@ -14,12 +14,14 @@ namespace KursMuseum.Presenter
     {
         ICreatedEx createdEx;
         ScheduleExcursionItem scheduleExcursionItem = new ScheduleExcursionItem();
+        UnitOfWork UnitOfWork;
 
-        public CreatedPrs(ICreatedEx CE)
+        public CreatedPrs(ICreatedEx CE, UnitOfWork unitOfWork)
         {
+            UnitOfWork = unitOfWork;
             createdEx = CE;
-            createdEx.Show();
-            CE.addExcursion += addExcursionClick;            
+            CE.addExcursion += addExcursionClick;
+            createdEx.ShowDialog();
         }
 
         private void addExcursionClick(object sender, EventArgs e)
@@ -31,7 +33,7 @@ namespace KursMuseum.Presenter
             scheduleExcursionItem.TicketsLeft = createdEx.QuantityTicketsExcursion;
             scheduleExcursionItem.InitialCost = createdEx.StartPriceTicketExcursion;
             UnitOfWork unitOfWork = new UnitOfWork();
-            unitOfWork.RepositoryScheduleExcursionItem.Create(scheduleExcursionItem);
+            UnitOfWork.RepositoryScheduleExcursionItem.Create(scheduleExcursionItem);
             createdEx.Close();
         }
     }

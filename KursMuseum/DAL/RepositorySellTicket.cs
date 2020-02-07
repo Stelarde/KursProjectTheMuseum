@@ -45,6 +45,37 @@ namespace KursMuseum.DAL
             }
             return sellTicketsDate;
         }
+        public BindingList<SellTicket> GetAllTypeTicket(string typeTicket)
+        {
+            BindingList<SellTicket> sellTicketsAll = db.SellTickets;
+            var sort = sellTicketsAll.Where(x => x.TypeTicket == typeTicket);
+            BindingList<SellTicket> sellTicketsDate = new BindingList<SellTicket>();
+            foreach (SellTicket sellTicket in sort)
+            {
+                sellTicketsDate.Add(sellTicket);
+            }
+            return sellTicketsDate;
+        }
+        public int CountSellTicket(string typeTicket)
+        {
+            BindingList<SellTicket> countsellTickets = GetAllTypeTicket(typeTicket);
+            int count = 0;
+            foreach (SellTicket sellTicket in countsellTickets)
+            {
+                ++count;
+            }
+            return count;
+        }
+        public double SummSellTypeTicket(string typeTicket)
+        {
+            BindingList<SellTicket> summsellTickets = GetAllTypeTicket(typeTicket);
+            double sum = 0;
+            foreach (SellTicket sellTicket in summsellTickets)
+            {
+                sum += sellTicket.PriceTicket;
+            }
+            return sum;
+        }
         public SellTicket Get(string nameSellTicket, DateTime dateTime)
         {
             BindingList<SellTicket> SellTickets = GetAll();

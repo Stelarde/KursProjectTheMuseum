@@ -8,6 +8,7 @@ using KursMuseum.DAL;
 using KursMuseum.Model;
 using KursMuseum.View;
 using System.Windows.Forms;
+using KursMuseum.Export.Excel;
 
 namespace KursMuseum.Presenter
 {
@@ -15,14 +16,16 @@ namespace KursMuseum.Presenter
     {
         private IMainForm _mainView { get; set; }
         private double PriceTicket;
+        ExcelExportShedule export = new ExcelExportShedule();
 
         public void Run()
         {
             _mainView.Show();            
         }
-        UnitOfWork unitOfWork = new UnitOfWork();
-        public MainPresenter (IMainForm view, LocalStorage db)
+        UnitOfWork UnitOfWork;
+        public MainPresenter (IMainForm view, UnitOfWork unitOfWork, LocalStorage db)
         {
+            UnitOfWork = unitOfWork;
             _mainView = view;
             view.AddEx += AddExClick;
             view.SoldTickets += SoldTicketsClick;
@@ -31,6 +34,8 @@ namespace KursMuseum.Presenter
             view.ChangeEx += ChangeExcursion;
             view.DeleteEx += DeleteExcursion;
             view.SellTicket += SellTicketClick;
+            view.CloseProgram += CloseProgramClick;
+            view.ReportShedule += ReportSheduleClick;
 
             BindingList<string> TypeTickets = new BindingList<string> 
             {
@@ -39,7 +44,17 @@ namespace KursMuseum.Presenter
                 db.TypeTickets[2].TicketName
             };
             view.TypeTickets = TypeTickets;
-            view.ScheduleExcursionItems = unitOfWork.RepositoryScheduleExcursionItem.GetAll();
+            view.ScheduleExcursionItems = UnitOfWork.RepositoryScheduleExcursionItem.GetAll();
+        }
+
+        private void ReportSheduleClick(object sender, EventArgs e)
+        {
+            export.SetContent(UnitOfWork.RepositoryScheduleExcursionItem);
+        }
+
+        private void CloseProgramClick(object sender, EventArgs e)
+        {
+            _mainView.Close();
         }
 
         private void SellTicketClick(object sender, EventArgs e)
@@ -51,15 +66,15 @@ namespace KursMuseum.Presenter
             sellTicket.SellTime = DateTime.Now;
             sellTicket.TimeStart = _mainView.SelectMainTableTimeStart;
             sellTicket.TypeTicket = _mainView.TypeTicket;
-            unitOfWork.RepositorySellTicket.Create(sellTicket);
+            UnitOfWork.RepositorySellTicket.Create(sellTicket);
             scheduleExcursionItem.TicketsLeft = _mainView.SelectMainTableTicketLeft - 1;
             scheduleExcursionItem.InitialCost = _mainView.SelectMainTableInitialCost;
             scheduleExcursionItem.TimeFinish = _mainView.SelectMainTableTimeFinish;
             scheduleExcursionItem.TimeStart = _mainView.SelectMainTableTimeStart;
             scheduleExcursionItem.TypeExcursion = _mainView.SelectMainTableTypeExcursion;
             scheduleExcursionItem.Venue = _mainView.SelectMainTableVenue;
-            unitOfWork.RepositoryScheduleExcursionItem.Update(scheduleExcursionItem);
-            //MessageBox.Show("Билет продан на '" + sellTicket.NameExcursion + "' " + sellTicket.TypeTicket + " по цене "+ sellTicket.PriceTicket.ToString());
+            UnitOfWork.RepositoryScheduleExcursionItem.Update(scheduleExcursionItem);
+            MessageBox.Show("Билет продан на '" + sellTicket.NameExcursion + "' " + sellTicket.TypeTicket + " по цене "+ sellTicket.PriceTicket.ToString());
         }
 
         private void DeleteExcursion(object sender, EventArgs e)
@@ -71,12 +86,14 @@ namespace KursMuseum.Presenter
             scheduleExcursionItem.TimeStart = _mainView.SelectMainTableTimeStart;
             scheduleExcursionItem.TypeExcursion = _mainView.SelectMainTableTypeExcursion;
             scheduleExcursionItem.Venue = _mainView.SelectMainTableVenue;
-            unitOfWork.RepositoryScheduleExcursionItem.Delete(scheduleExcursionItem);
+            UnitOfWork.RepositoryScheduleExcursionItem.Delete(scheduleExcursionItem);
         }
 
         private void ChangeExcursion(object sender, EventArgs e)
         {
-            var rf = new ChangeExPrs(new ChangeEx());
+            var rf = new ChangeExPrs(new ChangeEx(), UnitOfWork);
+            _mainView.ScheduleExcursionItems = null;
+            _mainView.ScheduleExcursionItems = UnitOfWork.RepositoryScheduleExcursionItem.GetAll();
         }
 
         private void ExcursionChoice(object sender, EventArgs e)
@@ -98,11 +115,11 @@ namespace KursMuseum.Presenter
 
         private void AddExClick(object sender, EventArgs e)
         {
-            var rf = new CreatedPrs(new CreatedEx());
+            var rf = new CreatedPrs(new CreatedEx(), UnitOfWork);
         }
         private void SoldTicketsClick(object sender, EventArgs e)
         {
-            var sf = new SellPrs(new SellForm());
+            var sf = new SellPrs(new SellForm(), UnitOfWork);
         }
     }
 }

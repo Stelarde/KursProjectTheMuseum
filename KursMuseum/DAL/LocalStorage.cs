@@ -13,18 +13,14 @@ namespace KursMuseum.DAL
         public BindingList<SellTicket> SellTickets;
         public BindingList<TypeTicket> TypeTickets;
         public BindingList<ScheduleExcursionItem> ScheduleExcursionItems;
-
+        public BindingList<ReportSellTicket> ReportSellTickets;
+        public void FillReportSellTickets()
+        {
+            ReportSellTickets = new BindingList<ReportSellTicket>();
+        }
         public void FillSellTickets()
         {
-            SellTickets = new BindingList<SellTicket>()
-            {
-                new SellTicket()
-                {
-
-                    PriceTicket = 15.25,
-                    SellTime = DateTime.Now,
-                }
-            };
+            SellTickets = new BindingList<SellTicket>();
         }
         public void FillTypeTickets()
         {
@@ -54,7 +50,7 @@ namespace KursMuseum.DAL
                 new ScheduleExcursionItem()
                 {
                     TypeExcursion="Дворцовые перевороты",
-                    TimeFinish=DateTime.MaxValue,
+                    TimeFinish=DateTime.Now,
                     TimeStart=DateTime.Now,
                     Venue="Третий зал",
                     TicketsLeft=50,
@@ -67,6 +63,7 @@ namespace KursMuseum.DAL
             FillSellTickets();
             FillTypeTickets();
             FillScheduleExcursionItems();
+            FillReportSellTickets();
         }
     }
 }

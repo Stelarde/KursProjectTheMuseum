@@ -8,13 +8,10 @@ namespace KursMuseum.Export.Pattern
 {
     public static class Pattern
     {
-        public static class Doc
-        {
-            public static string ReportWord = @"E:\Учеба\KursProjectTheMuseum-master\KursMuseum\Export\Word\Report.xltx";
-        }
         public static class Excel
         {
             public static string ReportExcel = @"E:\Учеба\KursProjectTheMuseum-master\KursMuseum\Export\Excel\Report.xltx";
+            public static string ReportExcelShedule = @"E:\Учеба\KursProjectTheMuseum-master\KursMuseum\Export\Excel\ReportSheduleExcursion1.xltx";
         }
     }
 }

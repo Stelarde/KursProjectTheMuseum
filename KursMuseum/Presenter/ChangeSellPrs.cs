@@ -15,15 +15,16 @@ namespace KursMuseum.Presenter
         IChangeSell changeSell;
         SellTicket sellTicket = new SellTicket();
         BindingList<SellTicket> sellTickets = new BindingList<SellTicket>();
-        UnitOfWork UnitOfWork = new UnitOfWork();
-        public ChangeSellPrs(IChangeSell ChSel)
+        UnitOfWork UnitOfWork;
+        public ChangeSellPrs(IChangeSell ChSel, UnitOfWork unitOfWork)
         {
+            UnitOfWork = unitOfWork;
             changeSell = ChSel;
             sellTickets = UnitOfWork.RepositorySellTicket.GetAll();
-            changeSell.Sell = sellTickets;
-            changeSell.Show();
+            changeSell.Sell = sellTickets;            
             ChSel.SelectSel += SelectSelClick;
             ChSel.ChangeSel += ChangeSelClick;
+            changeSell.ShowDialog();
         }
 
         private void ChangeSelClick(object sender, EventArgs e)

@@ -21,7 +21,10 @@ namespace KursMuseum.View
         public BindingList<ScheduleExcursionItem> ScheduleExcursionItems
         {
             get => dgvMainTable.DataSource as BindingList<ScheduleExcursionItem>;
-            set => dgvMainTable.DataSource = value;
+            set
+            {
+                dgvMainTable.DataSource = value;
+            }
         }
         public BindingList<String> TypeTickets
         {
@@ -83,6 +86,17 @@ namespace KursMuseum.View
         {
             add => btnSellTicket.Click += value;
             remove => btnSellTicket.Click -= value;
+        }
+
+        public event EventHandler CloseProgram
+        {
+            add => tsmClose.Click += value;
+            remove => tsmClose.Click -= value;
+        }
+        public event EventHandler ReportShedule
+        {
+            add => tsmReport.Click += value;
+            remove => tsmReport.Click -= value;
         }
 
         public new void Show()
