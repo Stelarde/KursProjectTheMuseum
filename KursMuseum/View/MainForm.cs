@@ -42,6 +42,8 @@ namespace KursMuseum.View
 
         public int SelectMainTableTicketLeft => (int)dgvMainTable.CurrentRow.Cells[4].Value;
 
+        public string TypeTicket => (string)cbTypeTicket.SelectedItem;
+
         public MainForm()
         {
             InitializeComponent();
@@ -53,7 +55,7 @@ namespace KursMuseum.View
             remove => btnSoldTicket.Click -= value;
         }
 
-        public event EventHandler TypeTicket
+        public event EventHandler SelectedTypeTicket
         {
             add => cbTypeTicket.SelectedIndexChanged += value;
             remove => cbTypeTicket.SelectedIndexChanged -= value;
@@ -75,6 +77,12 @@ namespace KursMuseum.View
         {
             add => btnDelExcursion.Click += value;
             remove => btnDelExcursion.Click -= value;
+        }
+
+        public event EventHandler SellTicket
+        {
+            add => btnSellTicket.Click += value;
+            remove => btnSellTicket.Click -= value;
         }
 
         public new void Show()

@@ -20,11 +20,13 @@ namespace KursMuseum.View
         string SelectMainTableVenue { get; }
         int SelectMainTableTicketLeft { get; }
         double SelectMainTableInitialCost { get; }
+        string TypeTicket { get; }
         event EventHandler AddEx;
         event EventHandler SoldTickets;
-        event EventHandler TypeTicket;
+        event EventHandler SelectedTypeTicket;
         event EventHandler MainTable;
         event EventHandler ChangeEx;
         event EventHandler DeleteEx;
+        event EventHandler SellTicket;
     }
 }

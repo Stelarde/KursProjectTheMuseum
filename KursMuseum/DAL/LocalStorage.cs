@@ -20,7 +20,7 @@ namespace KursMuseum.DAL
             {
                 new SellTicket()
                 {
-                    idTicket = "1",
+
                     PriceTicket = 15.25,
                     SellTime = DateTime.Now,
                 }

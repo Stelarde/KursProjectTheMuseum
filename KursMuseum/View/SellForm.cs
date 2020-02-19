@@ -22,5 +22,41 @@ namespace KursMuseum.View
             get => dgvSellTicket.DataSource as BindingList<SellTicket>;
             set => dgvSellTicket.DataSource = value;
         }
+
+        public string NameExcrusion => (string)dgvSellTicket.CurrentRow.Cells[0].Value;
+
+        public DateTime TimeStart => (DateTime)dgvSellTicket.CurrentRow.Cells[1].Value;
+
+        public string TypeTicket => (string)dgvSellTicket.CurrentRow.Cells[2].Value;
+
+        public double PriceTicket => (double)dgvSellTicket.CurrentRow.Cells[3].Value;
+
+        public DateTime SellTime => (DateTime)dgvSellTicket.CurrentRow.Cells[4].Value;
+
+        public double AllSalles 
+        {
+            get => double.Parse(tbAllSales.Text);
+            set => tbAllSales.Text = Convert.ToString(value); 
+        }
+
+        public DateTime SelectDate => (DateTime)dateTimePicker1.Value;
+
+        public event EventHandler ChangeDateSell
+        {
+            add => dateTimePicker1.ValueChanged += value;
+            remove => dateTimePicker1.ValueChanged -= value;
+        }
+
+        public event EventHandler SellChange
+        {
+            add => btnChangeTL.Click += value;
+            remove => btnChangeTL.Click -= value;
+        }
+
+        public event EventHandler SellDelete
+        {
+            add => btnDelTL.Click += value;
+            remove => btnDelTL.Click -= value;
+        }
     }
 }

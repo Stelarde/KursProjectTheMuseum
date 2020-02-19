@@ -51,22 +51,31 @@
     <Compile Include="DAL\LocalStorage.cs" />
     <Compile Include="DAL\RepositoryScheduleExcursionItem.cs" />
     <Compile Include="DAL\LSS.cs" />
+    <Compile Include="DAL\RepositorySellTicket.cs" />
     <Compile Include="DAL\UnitOfWork.cs" />
     <Compile Include="Model\ScheduleExcursionItem.cs" />
     <Compile Include="Model\SellTicket.cs" />
     <Compile Include="Model\TypeTicket.cs" />
     <Compile Include="Model\TypeTicketExcursion.cs" />
     <Compile Include="Presenter\ChangeExPrs.cs" />
+    <Compile Include="Presenter\ChangeSellPrs.cs" />
     <Compile Include="Presenter\CreatedPrs.cs" />
     <Compile Include="Presenter\IMainPresenter.cs" />
     <Compile Include="Presenter\MainPresenter.cs" />
     <Compile Include="Presenter\SellPrs.cs" />
     <Compile Include="Presenter\DiagramPrs.cs" />
+    <Compile Include="View\BindigList.cs" />
     <Compile Include="View\ChangeEx.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\ChangeEx.Designer.cs">
       <DependentUpon>ChangeEx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChangeSell.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ChangeSell.Designer.cs">
+      <DependentUpon>ChangeSell.cs</DependentUpon>
     </Compile>
     <Compile Include="View\CreatedEx.cs">
       <SubType>Form</SubType>
@@ -81,6 +90,7 @@
       <DependentUpon>Diagram.cs</DependentUpon>
     </Compile>
     <Compile Include="View\IChangeEx.cs" />
+    <Compile Include="View\IChangeSell.cs" />
     <Compile Include="View\ICreatedEx.cs" />
     <Compile Include="View\IDiagram.cs" />
     <Compile Include="View\IMainForm.cs" />
@@ -102,6 +112,9 @@
     </Compile>
     <EmbeddedResource Include="View\ChangeEx.resx">
       <DependentUpon>ChangeEx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ChangeSell.resx">
+      <DependentUpon>ChangeSell.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\CreatedEx.resx">
       <DependentUpon>CreatedEx.cs</DependentUpon>

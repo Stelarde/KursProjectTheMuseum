@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using KursMuseum.DAL;
 using KursMuseum.Model;
 using KursMuseum.View;
+using System.Windows.Forms;
 
 namespace KursMuseum.Presenter
 {
@@ -20,28 +21,45 @@ namespace KursMuseum.Presenter
             _mainView.Show();            
         }
         UnitOfWork unitOfWork = new UnitOfWork();
-
-        public void Update()
-        {
-            _mainView.ScheduleExcursionItems = unitOfWork.RepositoryScheduleExcursionItem.GetAll();
-        }
         public MainPresenter (IMainForm view, LocalStorage db)
         {
             _mainView = view;
             view.AddEx += AddExClick;
             view.SoldTickets += SoldTicketsClick;
-            view.TypeTicket += TypeTicketChanged;
+            view.SelectedTypeTicket += TypeTicketChanged;
             view.MainTable += ExcursionChoice;
             view.ChangeEx += ChangeExcursion;
             view.DeleteEx += DeleteExcursion;
+            view.SellTicket += SellTicketClick;
 
-            BindingList<string> TypeTicket = new BindingList<string> 
+            BindingList<string> TypeTickets = new BindingList<string> 
             {
                 db.TypeTickets[0].TicketName, 
                 db.TypeTickets[1].TicketName, 
                 db.TypeTickets[2].TicketName
             };
+            view.TypeTickets = TypeTickets;
             view.ScheduleExcursionItems = unitOfWork.RepositoryScheduleExcursionItem.GetAll();
+        }
+
+        private void SellTicketClick(object sender, EventArgs e)
+        {
+            SellTicket sellTicket = new SellTicket();
+            ScheduleExcursionItem scheduleExcursionItem = new ScheduleExcursionItem();
+            sellTicket.NameExcursion = _mainView.SelectMainTableTypeExcursion;
+            sellTicket.PriceTicket = _mainView.PriceTickets;
+            sellTicket.SellTime = DateTime.Now;
+            sellTicket.TimeStart = _mainView.SelectMainTableTimeStart;
+            sellTicket.TypeTicket = _mainView.TypeTicket;
+            unitOfWork.RepositorySellTicket.Create(sellTicket);
+            scheduleExcursionItem.TicketsLeft = _mainView.SelectMainTableTicketLeft - 1;
+            scheduleExcursionItem.InitialCost = _mainView.SelectMainTableInitialCost;
+            scheduleExcursionItem.TimeFinish = _mainView.SelectMainTableTimeFinish;
+            scheduleExcursionItem.TimeStart = _mainView.SelectMainTableTimeStart;
+            scheduleExcursionItem.TypeExcursion = _mainView.SelectMainTableTypeExcursion;
+            scheduleExcursionItem.Venue = _mainView.SelectMainTableVenue;
+            unitOfWork.RepositoryScheduleExcursionItem.Update(scheduleExcursionItem);
+            MessageBox.Show("Билет продан на '" + sellTicket.NameExcursion + "' " + sellTicket.TypeTicket + " по цене "+ sellTicket.PriceTicket.ToString());
         }
 
         private void DeleteExcursion(object sender, EventArgs e)
@@ -54,7 +72,6 @@ namespace KursMuseum.Presenter
             scheduleExcursionItem.TypeExcursion = _mainView.SelectMainTableTypeExcursion;
             scheduleExcursionItem.Venue = _mainView.SelectMainTableVenue;
             unitOfWork.RepositoryScheduleExcursionItem.Delete(scheduleExcursionItem);
-            Update();
         }
 
         private void ChangeExcursion(object sender, EventArgs e)
@@ -85,7 +102,7 @@ namespace KursMuseum.Presenter
         }
         private void SoldTicketsClick(object sender, EventArgs e)
         {
-            var sf = new SellPrs(new SellForm(), new DAL.LocalStorage());
+            var sf = new SellPrs(new SellForm());
         }
     }
 }

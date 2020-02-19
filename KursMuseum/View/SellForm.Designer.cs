@@ -34,7 +34,7 @@
             this.btnReportSellTicket = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbAllSales = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSellTicket)).BeginInit();
@@ -97,12 +97,12 @@
             this.button1.Text = "Диаграмма проданных билетов";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // tbAllSales
             // 
-            this.textBox1.Location = new System.Drawing.Point(601, 157);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(165, 20);
-            this.textBox1.TabIndex = 7;
+            this.tbAllSales.Location = new System.Drawing.Point(601, 157);
+            this.tbAllSales.Name = "tbAllSales";
+            this.tbAllSales.Size = new System.Drawing.Size(165, 20);
+            this.tbAllSales.TabIndex = 7;
             // 
             // label1
             // 
@@ -129,7 +129,7 @@
             this.ClientSize = new System.Drawing.Size(773, 294);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbAllSales);
             this.Controls.Add(this.btnChangeTL);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
@@ -158,7 +158,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbAllSales;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
